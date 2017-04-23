@@ -56,6 +56,14 @@ namespace Game.Interaction
         }
         public static void SetKey(string name, KeyCode code)
         {
+            foreach(KeyValuePair<string, KeyCode> input in m_Inputs)
+            {
+                if (input.Value == code)
+                {
+                    m_Inputs[input.Key] = m_Inputs[name];
+                    break;
+                }
+            }
             m_Inputs[name] = code;
             SaveChanges();
         }
