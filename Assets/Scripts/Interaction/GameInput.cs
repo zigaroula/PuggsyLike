@@ -12,7 +12,7 @@ namespace Game.Interaction
         #region Private Methods
         private static void SaveChanges()
         {
-            string l_GameInput = Serializer.ConvertToString(m_Inputs);
+            string l_GameInput = Tools.Serializer.ConvertToString(m_Inputs);
             PlayerPrefs.SetString("GameInput", l_GameInput);
             PlayerPrefs.Save();
         }
@@ -25,7 +25,7 @@ namespace Game.Interaction
             if (PlayerPrefs.HasKey("GameInput"))
             {
                 string l_KeyboardInput = PlayerPrefs.GetString("GameInput");
-                m_Inputs = Serializer.ConvertFromString<Dictionary<string, KeyCode>>(l_KeyboardInput);
+                m_Inputs = Tools.Serializer.ConvertFromString<Dictionary<string, KeyCode>>(l_KeyboardInput);
             }
             else
             {
