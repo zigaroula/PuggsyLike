@@ -12,7 +12,7 @@ namespace Game.Interaction
         #region Private Methods
         private static void SaveChanges()
         {
-            string l_GameInput = JsonUtility.ToJson(m_Inputs);
+            string l_GameInput = Serializer.ConvertToString(m_Inputs);
             PlayerPrefs.SetString("GameInput", l_GameInput);
             PlayerPrefs.Save();
         }
@@ -21,10 +21,11 @@ namespace Game.Interaction
         #region Public Methods
         public static void Initialize()
         {
+            m_Inputs = new Dictionary<string, KeyCode>();
             if (PlayerPrefs.HasKey("GameInput"))
             {
-                string l_KeyboardInput = PlayerPrefs.GetString("KeyboardInput");
-                m_Inputs = JsonUtility.FromJson<Dictionary<string, KeyCode>>(l_KeyboardInput);
+                string l_KeyboardInput = PlayerPrefs.GetString("GameInput");
+                m_Inputs = Serializer.ConvertFromString<Dictionary<string, KeyCode>>(l_KeyboardInput);
             }
             else
             {
