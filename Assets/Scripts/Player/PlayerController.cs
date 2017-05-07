@@ -12,18 +12,16 @@ namespace Game.Player
         #endregion
 
         #region Private Methods
-        void Start()
+        private void Start()
         {
 
         }
-
-        void Update()
+        private void Update()
         {
-            if (Input.GetKey(KeyCode.A))
-            {
-                PlayerPrefs.DeleteAll();
-            }
-
+            InteractionHandler();
+        }
+        private void InteractionHandler()
+        {
             if (GameInput.GetKey("MoveLeft"))
             {
                 transform.Translate(new Vector3(-10.0f * Time.deltaTime, 0.0f, 0.0f));
